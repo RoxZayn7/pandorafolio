@@ -1,0 +1,19 @@
+:root {
+    color-scheme: light dark;
+    --bg: #0b1830;
+    --deep: #101a43;
+    --surface: rgba(18, 40, 68, 0.76);
+    --solid: #122844;
+    --text: #f0ffff;
+    --muted: #b7d6dc;
+    --line: rgba(113, 226, 222, 0.22);
+    --cyan: #72f5f2;
+    --cyan2: #83fff1;
+    --teal: #55dfcc;
+    --violet: #c09cff;
+    --glow: rgba(78, 219, 201, 0.24);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    --nav: rgba(11, 24, 48, 0.88);
+    --forest: #123d51;
+    --focus: #9cfff7;
+}
