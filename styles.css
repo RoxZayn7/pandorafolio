@@ -159,3 +159,19 @@ h3 {
 p {
     margin: 0;
 }
+
+.skip {
+    position: fixed;
+    z-index: 100;
+    top: 8px;
+    left: 8px;
+    transform: translateY(-150%);
+    padding: 10px 14px;
+    background: var(--solid);
+    border-radius: 8px;
+}
+
+.skip:focus {
+    transform: none;
+}
+
