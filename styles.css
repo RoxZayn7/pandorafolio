@@ -612,3 +612,63 @@ p {
     color: var(--line);
 }
 
+.contact {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 46px;
+    padding: clamp(32px, 6vw, 68px);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 22px 70px 22px 22px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.contact:after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: -90px;
+    top: -100px;
+    border: 1px solid var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 70px var(--glow);
+    opacity: 0.35;
+}
+
+.contact-copy {
+    max-width: 620px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-copy h2 {
+    margin-bottom: 18px;
+}
+
+.contact-copy > p:last-of-type {
+    color: var(--muted);
+}
+
+.contact-links {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.contact-links a {
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    font-weight: 600;
+}
+
+.contact-links a:hover {
+    color: var(--cyan);
+}
+
