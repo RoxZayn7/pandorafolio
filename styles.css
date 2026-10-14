@@ -17,3 +17,24 @@
     --forest: #123d51;
     --focus: #9cfff7;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #050d1b;
+        --deep: #0a1430;
+        --surface: rgba(11, 27, 48, 0.74);
+        --solid: #0c1b30;
+        --text: #ecffff;
+        --muted: #a9cbd1;
+        --line: rgba(113, 226, 222, 0.17);
+        --cyan: #65f3f1;
+        --cyan2: #7ffff0;
+        --teal: #4edbc9;
+        --violet: #ba94ff;
+        --glow: rgba(78, 219, 201, 0.22);
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+        --nav: rgba(5, 13, 27, 0.86);
+        --forest: #0b2940;
+        --focus: #8cfff4;
+    }
+}
