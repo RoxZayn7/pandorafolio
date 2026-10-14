@@ -25,7 +25,7 @@ document.addEventListener("keydown", (e) => {
 
 // Reveal each element once when it enters the viewport.
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!reduced && "IntersectionPbserver" in window) {
+if (!reduced && "IntersectionObserver" in window) {
     const items = document.querySelectorAll(".reveal");
     items.forEach((el) => el.classList.add("watching"));
     const reveal = new IntersectionObserver(
@@ -50,16 +50,17 @@ const sectionObserver = new IntersectionObserver(
     ),
 );
     }),
-    { toorMargin: "-35% 0px -55% 0px" },
+    { rootMargin: "-35% 0px -55% 0px" },
 );
 
 document.querySelectorAll("main section[id]").forEach((section) => sectionObserver.observe(section));
 
 // Original canvas particles inspired by softly drifting forest lights.
-const canvas = document.getElementById("particles"), ctx = canvas.getContent("2d");
+const canvas = document.getElementById("particles"), 
+ctx = canvas.getContext("2d");
 let particles = [];
 function resize() {
-    const radio = Math.min(devicePixelRatio || 1, 2);
+    const ratio = Math.min(devicePixelRatio || 1, 2);
     canvas.width = innerWidth * ratio;
     canvas.height = innerHeight * ratio;
     canvas.style.width = innerWidth + "px";
@@ -77,7 +78,7 @@ function resize() {
     }));
 }
 function draw(time = 0) {
-    ctx.clearReact(0, 0, innerWidth, innerHeight);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
     const dark = matchMedia("(prefers-color-scheme: dark)").matches;
     particles.forEach((o) => {
         o.x += o.vx;
