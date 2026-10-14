@@ -439,3 +439,28 @@ p {
     font-weight: 700;
     box-shadow: var(--shadow);
 }
+
+/* Content sections */
+.about-layout {
+    display: flex;
+    gap: clamp(34px, 8vw, 96px);
+    align-items: flex-start;
+}
+
+.about-lead {
+    flex: 0 1 390px;
+    font-family: "Marcellus", serif;
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
+    line-height: 1.35;
+}
+
+.about-copy {
+    flex: 1 1 520px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.about-copy p + p {
+    margin-top: 18px;
+}
+
