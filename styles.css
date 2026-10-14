@@ -132,3 +132,30 @@ button {
     background: currentColor;
 }
 
+h1, h2, h3 {
+    margin: 0;
+    line-height: 1.12;
+}
+
+h1, h2 {
+    font-family: "Marcellus", serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: clamp(3.1rem, 8vw, 6.8rem);
+    letter-spacing: -0.055em;
+}
+
+h2 {
+    font-size: clamp(2rem, 4.5vw, 3.55rem);
+    letter-spacing: -0.035em;
+}
+
+h3 {
+    font-size: 1.12rem;
+}
+
+p {
+    margin: 0;
+}
