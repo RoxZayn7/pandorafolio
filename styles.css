@@ -113,3 +113,22 @@ button {
     margin-bottom: 48px;
 }
 
+.label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 12px;
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 0.86rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.label:before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+}
+
