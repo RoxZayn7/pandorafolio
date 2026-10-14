@@ -216,3 +216,57 @@ p {
     background: var(--glow);
     outline: 0;
 }
+
+.menu {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.menu span,
+.menu span:before,
+.menu span:after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin: auto;
+    background: currentColor;
+    border-radius: 2px;
+    transition: 0.2s;
+}
+
+.menu span {
+    position: relative;
+}
+
+.menu span:before,
+.menu span:after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.menu span:before {
+    transform: translateY(-6px);
+} 
+
+.menu span:after {
+    transform: translateY(6px);
+}
+
+.menu[aria-expanded="true"] span {
+    background: transparent;
+}
+
+.menu[aria-expanded="true"] span:before {
+    transform: rotate(45deg);
+}
+
+.menu[aria-expanded="true"] span:after {
+    transform: rotate(-45deg);
+}
