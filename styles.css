@@ -402,3 +402,27 @@ p {
     top: 31%;
 }
 
+.placeholder {
+    width: 72%;
+    text-align: center;
+    color: var(--muted);
+}
+
+.placeholder svg {
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 18px;
+    color: var(--cyan);
+    opacity: 0.8;
+}
+
+.placeholder strong {
+    display: block;
+    color: var(--text);
+}
+
+.placeholder small {
+    display: block;
+    margin-top: 5px;
+}
+
