@@ -690,3 +690,24 @@ footer {
     color: var(--teal);
 }
 
+/* IntersectionObserver add .visible as each item enters the viewport. */
+.reveal {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s, transform 0.7s;
+}
+
+.reveal.watching {
+    opacity: 1;
+    transform: translateY(18px);
+}
+
+.reveal.watching.visible {
+    opacity: 1;
+    transform: none;
+}
+
+:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 4px;
+}
