@@ -73,8 +73,8 @@ function resize() {
         x: Math.random() * innerWidth,
         y: Math.random() * innerHeight,
         r: Math.random() * 3 + 2.5,
-        vx: (Math.random() -0.5) * 0.22,
-        vy: -(Math.random() * 0.22 + 0.06),
+        vx: (Math.random() -0.5) * 0.5,
+        vy: -(Math.random() * 0.5 + 0.35),
         a: Math.random() * 0.45 + 0.25,
         p: Math.random() * Math.PI * 2,
         sway: Math.random() * Math.PI * 2,
@@ -142,10 +142,11 @@ function draw(time = 0) {
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     const dark = matchMedia("(prefers-color-scheme: dark)").matches;
     particles.forEach((o) => {
-        o.x += o.vx + Math.sin(time * 0.0006 + o.sway) * 0.12;
-        o.y += o.vy;
+        o.x += o.vx + Math.sin(time * 0.0009 + o.sway) * 0.35;
+        o.y += o.vy + Math.cos(time * 0.0007 + o.sway * 1.3) * 0.3;
         o.rot += o.spin;
         if (o.y < -40) { o.y = innerHeight + 40; o.x = Math.random() * innerWidth; }
+        if (o.y > innerHeight + 40) { o.y = -40; o.x = Math.random() * innerWidth; }
         if (o.x < -40) o.x = innerWidth + 40;
         if (o.x > innerWidth + 40) o.x = -40;
         drawSprite(o, time, dark);
