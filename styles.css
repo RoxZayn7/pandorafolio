@@ -464,3 +464,28 @@ p {
     margin-top: 18px;
 }
 
+.facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.fact {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 13px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.fact svg {
+    width: 17px;
+    color: var(--cyan);
+}
+
