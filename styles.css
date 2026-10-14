@@ -557,3 +557,38 @@ p {
     flex-wrap: wrap;
     gap: 22px;
 }
+
+.project {
+    flex: 1 1 330px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 18px 18px 42px 18px;
+    background: var(--surface);
+    box-shadow: 0 18px 44px rgba(4, 20, 31, 0.08);
+    transition: 0.2s;
+}
+
+.project:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan);
+}
+
+.project-no {
+    color: var(--cyan);
+    font-family: "Marcellus", serif;
+    font-size: 1.45rem;
+}
+
+.project h3 {
+    margin-top: 36px;
+    font-size: 1.36rem;
+}
+
+.project p {
+    margin-top: 12px;
+}
+
