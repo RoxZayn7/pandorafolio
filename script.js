@@ -74,7 +74,7 @@ function resize() {
         y: Math.random() * innerHeight,
         r: Math.random() * 3 + 2.5,
         vx: (Math.random() -0.5) * 0.5,
-        vy: -(Math.random() * 0.5 + 0.35),
+        vy: (Math.random() -0.5),
         a: Math.random() * 0.45 + 0.25,
         p: Math.random() * Math.PI * 2,
         sway: Math.random() * Math.PI * 2,
@@ -88,7 +88,7 @@ function drawSprite(o, time, dark) {
     const pulse = 0.65 + Math.sin(time * 0.0012 + o.p) * 0.35;
     const alpha = o.a * pulse;
     const coreColor = dark ? "150,255,240" : "0,140,150";
-    const flowColor = dark ? "#65f3f1" : "#00aabd";
+    const glowColor = dark ? "#65f3f1" : "#00aabd";
 
     ctx.save();
     ctx.translate(o.x, o.y);
