@@ -107,3 +107,9 @@ button {
     padding: 104px 0;
     position: relative;
 }
+
+.section-head {
+    max-width: 690px;
+    margin-bottom: 48px;
+}
+
