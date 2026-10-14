@@ -270,3 +270,22 @@ p {
 .menu[aria-expanded="true"] span:after {
     transform: rotate(-45deg);
 }
+
+/* Hero */
+.hero {
+    min-height: calc(100svh - 70px);
+    padding: 84px 0 72px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-layout {
+    display: flex;
+    align-items: center;
+    gap: clamp(42px, 8vw, 100px);
+}
+
+.hero-copy {
+    flex: 1 1 620px;
+}
+
