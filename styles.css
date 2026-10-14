@@ -289,3 +289,19 @@ p {
     flex: 1 1 620px;
 }
 
+.greeting {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+    color: var(--cyan);
+    font-weight: 600;
+}
+
+.greeting i {
+    width: 34px;
+    height: 1px;
+    background: currentColor;
+    box-shadow: 0 0 14px var(--cyan);
+}
+
