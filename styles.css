@@ -97,3 +97,13 @@ button {
     pointer-events: none;
     background: linear-gradient(150deg, transparent 0 67%, var(--forest) 67.3% 69%, transparent 69.3%) 10% 100%/230px 280px, linear-gradient(30deg, transparent 0 67%, var(--forest) 67.3% 69%, transparent 69.3%) 74% 100%/250px 330px;
 }
+
+.container {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.section {
+    padding: 104px 0;
+    position: relative;
+}
