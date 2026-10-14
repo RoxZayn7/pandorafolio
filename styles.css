@@ -175,3 +175,44 @@ p {
     transform: none;
 }
 
+/* Sticky glass navigation */
+.nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--line);
+    background: var(--nav);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.nav {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a {
+    padding: 9px 13px;
+    text-decoration: none;
+    color: var(--muted);
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a.active {
+    color: var(--text);
+    background: var(--glow);
+    outline: 0;
+}
