@@ -84,8 +84,8 @@ function resize() {
     }));
 }
 
-function drawSprite(o, time, dark) {
-    const pulse = 0.65 + Math.sin(time * 0.0012 + o.p) * 0.35;
+function drawSprite (o, time, dark) {
+    const pulse = 0.65 + Math.sin(time + 0.0012 + o.p) * 0.35;
     const alpha = o.a * pulse;
     const coreColor = dark ? "150,255,240" : "0,140,150";
     const glowColor = dark ? "#65f3f1" : "#00aabd";
@@ -95,44 +95,75 @@ function drawSprite(o, time, dark) {
     ctx.rotate(o.rot);
 
     // Soft halo
-    const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, o.r * 5);
-    halo.addColorStop(0, `rgba(${coreColor},${0.35 * alpha})`);
-    halo.addColorStop(1, `rgba(${coreColor}, 0)`);
+    const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, o.r * 6);
+    halo.addColorStop(0, `rgba(${coreColor},${0.3 * alpha})`);
+    halo.addColorStop(1, `rgba(${coreColor},0)`);
     ctx.fillStyle = halo;
     ctx.beginPath();
-    ctx.arc(0, 0, o.r * 5, 0, Math.PI * 2);
+    ctx.arc(0, 0, o.r * 6, 0, Math.PI * 2);
     ctx.fill();
 
-    //Wispy trailing tendrils
-    ctx.strokeStyle = `rgba(${coreColor},${0.55 * alpha})`;
-    ctx.lineWidth = Math.max(0.6, o.r * 0.16);
+    // Tendrils fanning upwards like a fountain
+    const n = o.tendrils;
+    const spread = Math.PI * 0.95;
     ctx.lineCap = "round";
-    for (let i=0; i < o.tendrils; i++) {
-        const ang = (i / o.tendrils) * Math.PI * 2;
-        const sway = Math.sin(time * 0.0016 + o.sway + i * 1.7) * 0.5;
-        const len = o.r * (3.2 + Math.sin(o.sway + i * 2.3) * 0.9);
-        const sx = Math.cos(ang) * o.r * 0.7;
-        const sy = Math.sin(ang) * o.r * 0.7;
-        const ex = Math.cos(ang + sway + 0.4) * len;
-        const ey = Math.sin(ang + sway + 0.4) * len;
-        const cx = (sx + ex) / 2 + Math.cos(ang + Math.PI / 2) * sway * o.r;
-        const cy = (sy + ey) / 2 + Math.cos(ang + Math.PI / 2) * sway * o.r;
+    for (let i = 0; i < n; i++) {
+        const f = n === 1 ? 0.5 : i / (n - 1); // 0 = left edge, 1 = right edge
+        const sway = Math.sin(time * 0.0016 + o.sway + i * 1.7) * 0.35;
+        const ang = -Math.PI / 2 (f - 0.5) * spread + sway * 0.3;
+        const len = o.r * (5 - Math.abs(f - 0.5) * 2.4); // middle tendrils longest
+        const sx = 0, sy = -o.r * 0.4;
+        const ex = Math.cos(ang) * len;
+        const ey = Math.sin(ang) * len;
+        const cx = (sx + ex) / 2 + Math.cos(ang + Math.PI / 2) * len * 0.35 * (f - 0.5) * 2;
+        const cy = (sy + ey) / 2 + Math.sin(ang + Math.PI / 2) * len * 0.35 * (f - 0.5) * 2;
+
+        ctx.strokeStyle = `rgba(${coreColor},${0.5 * alpha})`;
+        ctx.lineWidth = Math.max(0.6, o.r * 0.14);
         ctx.beginPath();
         ctx.moveTo(sx, sy);
         ctx.quadraticCurveTo(cx, cy, ex, ey);
         ctx.stroke();
+
+        // Feathery side filaments along each tendril
+        ctx.strokeStyle = `rgba(${coreColor},${0.35 * alpha})`;
+        ctx.lineWidth = Math.max(0.5, o.r * 0.1);
+        for (const t of [0.35, 0.55, 0.75]) {
+            const mt = 1 - t;
+            const px = mt * mt * sx + 2 * mt * t * cx * + t * t * ex;
+            const py = mt * mt * sy + 2 * mt * t * cy * + t * t * ey;
+            const tx = 2 * mt * (cx - sx) + 2 * t * (ex -cx);
+            const ty = 2 * mt * (cy - sy) + 2 * t * (ey -cy);
+            const tl = Math.hypot(tx, ty) || 1;
+            const nx = -ty / tl, ny = tx / tl;
+            const fl = o.r * 0.8 * (1 - t * 0.4);
+            ctx.beginPath();
+            ctx.moveTo(px - nx * fl, py - ny * fl);
+            ctx.lineTo(px + nx * fl, py + ny * fl);
+            ctx.stroke();
+        }
+
+        // Glowing tuft at the tendril tip
+        const tuft = ctx.createRadialGradient(ex, ey, 0, ex, ey, o.r * 1.1);
+        tuft.addColorStop(0, `rgba(255,255,255,${0.8 * alpha})`);
+        tuft.addColorStop(0.5, `rgba(${coreColor},${0.5 * alpha})`);
+        tuft.addColorStop(1, `rgba(${coreColor},0)`);
+        ctx.fillStyle = tuft;
+        ctx.beginPath();
+        ctx.arc(ex, ey, o.r * 1.1, 0, Math.PI * 2);
+        ctx.fill();
     }
 
-    // Bright seed core
+    // Elongated seed body hanging below the fan
     ctx.shadowColor = glowColor;
     ctx.shadowBlur = 12;
-    const core = ctx.createRadialGradient(0, 0, 0, 0, 0, o.r);
-    core.addColorStop(0, `rgba(255,255,255,${0.95 * alpha})`);
-    core.addColorStop(0.55, `rgba(${coreColor},${0.85 * alpha})`);
-    core.addColorStop(1, `rgba(${coreColor},0)`);
-    ctx.fillStyle = core;
+    const seed = ctx.createRadialGradient(0, o.r * 0.9, 0, 0, o.r * 0.9, o.r * 1.4);
+    seed.addColorStop(0, `rgba(255,255,255,${0.9 * alpha})`);
+    seed.addColorStop(0.5, `rgba(${coreColor},${0.8 * alpha})`);
+    seed.addColorStop(1, `rgba(${coreColor},0)`);
+    ctx.fillStyle = seed;
     ctx.beginPath();
-    ctx.arc(0, 0, o.r, 0, Math.PI * 2);
+    ctx.ellipse(0, o.r * 0.9, o.r * 0.55, o.r * 1.25, 0, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.restore();
