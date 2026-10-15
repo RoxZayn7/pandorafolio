@@ -85,7 +85,7 @@ function resize() {
 }
 
 function drawSprite (o, time, dark) {
-    const pulse = 0.65 + Math.sin(time + 0.0012 + o.p) * 0.35;
+    const pulse = 0.65 + Math.sin(time * 0.0012 + o.p) * 0.35;
     const alpha = o.a * pulse;
     const coreColor = dark ? "150,255,240" : "0,140,150";
     const glowColor = dark ? "#65f3f1" : "#00aabd";
@@ -110,7 +110,7 @@ function drawSprite (o, time, dark) {
     for (let i = 0; i < n; i++) {
         const f = n === 1 ? 0.5 : i / (n - 1); // 0 = left edge, 1 = right edge
         const sway = Math.sin(time * 0.0016 + o.sway + i * 1.7) * 0.35;
-        const ang = -Math.PI / 2 (f - 0.5) * spread + sway * 0.3;
+        const ang = -Math.PI / 2 + (f - 0.5) * spread + sway * 0.3;
         const len = o.r * (5 - Math.abs(f - 0.5) * 2.4); // middle tendrils longest
         const sx = 0, sy = -o.r * 0.4;
         const ex = Math.cos(ang) * len;
@@ -130,8 +130,8 @@ function drawSprite (o, time, dark) {
         ctx.lineWidth = Math.max(0.5, o.r * 0.1);
         for (const t of [0.35, 0.55, 0.75]) {
             const mt = 1 - t;
-            const px = mt * mt * sx + 2 * mt * t * cx * + t * t * ex;
-            const py = mt * mt * sy + 2 * mt * t * cy * + t * t * ey;
+            const px = mt * mt * sx + 2 * mt * t * cx + + t * t * ex;
+            const py = mt * mt * sy + 2 * mt * t * cy + + t * t * ey;
             const tx = 2 * mt * (cx - sx) + 2 * t * (ex -cx);
             const ty = 2 * mt * (cy - sy) + 2 * t * (ey -cy);
             const tl = Math.hypot(tx, ty) || 1;
