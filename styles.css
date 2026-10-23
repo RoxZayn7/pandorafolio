@@ -718,6 +718,32 @@ footer {
     outline-offset: 4px;
 }
 
+/* Project card links */
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.project-links a {
+    padding: 9px 15px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--solid);
+    color: var(--cyan);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.project-links a:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 0 18px var(--glow);
+    transform: translateY(-2px);
+}
+
 @media (max-width: 760px) {
     .container {
         width: min(100% - 28px, 1120px);
